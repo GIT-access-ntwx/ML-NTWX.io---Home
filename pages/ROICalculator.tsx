@@ -24,8 +24,7 @@ const ROICalculator: React.FC = () => {
     const monthlyBuildCost = (devSalaries * teamSize) / 12 + infraCost;
     const monthlyRentCost = subscriptionCost;
     
-    const chartData = [];
-    let cumulativeBuild = 0;
+    const chartData: Array<{ month: string; Build: number; Rent: number; Savings: number }> = []; let cumulativeBuild = 0;
     let cumulativeRent = 0;
 
     for (let i = 1; i <= months; i++) {
