@@ -1,9 +1,8 @@
-kind: "AppHostingYaml"
-version: "v1"
 runConfig:
-  basePath: "/"
+  runtime: nodejs20
+  basePath: /
 env:
   - variable: API_KEY
-    availability: [BUILD, RUNTIME]
-# Ensure this is set in your Firebase Console settings for App Hosting
-# Region: us-east4
+    availability:
+      - BUILD
+      - RUNTIME
