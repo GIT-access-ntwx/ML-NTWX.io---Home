@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect } from 'react';
 import { 
   BarChart, 
@@ -11,7 +13,7 @@ import {
 } from 'recharts';
 import { Info } from 'lucide-react';
 
-const ROICalculator: React.FC = () => {
+export default function ROICalculatorPage() {
   const [devSalaries, setDevSalaries] = useState(150000);
   const [teamSize, setTeamSize] = useState(3);
   const [infraCost, setInfraCost] = useState(2000); // Monthly
@@ -24,7 +26,16 @@ const ROICalculator: React.FC = () => {
     const monthlyBuildCost = (devSalaries * teamSize) / 12 + infraCost;
     const monthlyRentCost = subscriptionCost;
     
-    const chartData: Array<{ month: string; Build: number; Rent: number; Savings: number }> = []; let cumulativeBuild = 0;
+    // Improved type definition for chartData
+    interface ChartDataPoint {
+      month: string;
+      Build: number;
+      Rent: number;
+      Savings: number;
+    }
+
+    const chartData: ChartDataPoint[] = [];
+    let cumulativeBuild = 0;
     let cumulativeRent = 0;
 
     for (let i = 1; i <= months; i++) {
@@ -136,6 +147,4 @@ const ROICalculator: React.FC = () => {
       </div>
     </div>
   );
-};
-
-export default ROICalculator;
+}
