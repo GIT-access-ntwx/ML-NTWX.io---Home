@@ -1,8 +1,2 @@
 runConfig:
   runtime: nodejs20
-  basePath: /
-env:
-  - variable: API_KEY
-    availability:
-      - BUILD
-      - RUNTIME
