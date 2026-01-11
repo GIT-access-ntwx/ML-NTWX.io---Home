@@ -1,2 +1,7 @@
 runConfig:
   runtime: nodejs20
+  env:
+  - variable: API_KEY
+    value: YOUR_API_KEY_HERE
+    availability:
+      - RUNTIME
