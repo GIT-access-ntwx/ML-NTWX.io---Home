@@ -2,16 +2,17 @@ import { GoogleGenAI } from "@google/genai";
 
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
-export const generateAEOContent = async (topic: string, keywords: string): Promise<string> => {
+export const generateAEOContent = async (topic: string, keywords: string, contentType: string): Promise<string> => {
   try {
     const response = await ai.models.generateContent({
-      model: 'gemini-3-flash-preview',
+      model: 'gemini-2.0-flash-exp',
       contents: `Generate optimized content for Answer Engine Optimization (AEO) and Generative Engine Optimization (GEO). 
       
       Topic: ${topic}
       Target Keywords: ${keywords}
+      Content Format: ${contentType}
       
-      Structure the response as a direct answer suitable for an AI overview snippet, followed by a structured list of key facts that an LLM would easily parse. Keep it concise, authoritative, and fact-based. Use Markdown formatting.`,
+      Structure the response as a direct answer suitable for an AI overview snippet, followed by a structured list of key facts that an LLM would easily parse. Keep it concise, authoritative, and fact-based. Use Markdown formatting. If the requested format is 'table', ensure a Markdown table is provided.`,
     });
     return response.text || "No content generated.";
   } catch (error) {
